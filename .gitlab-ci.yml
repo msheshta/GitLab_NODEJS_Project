@@ -1,7 +1,7 @@
 
 stages:
   - install
-  - build
+  - build_push_hub
 
 variables:
   IMAGE_NAME: "$DOCKER_USERNAME/gitlab-nodejs"
@@ -12,11 +12,14 @@ install_job:
   script: 
     - npm install
 
-build_job:
-  stage: build
+build_push_job:
+  stage: build_push_hub
   image: docker:24
   services:
     - docker:24-dind
-  script:
+  before_script:
     - docker build -t $IMAGE_NAME .
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push $IMAGE_NAME
     - docker images
