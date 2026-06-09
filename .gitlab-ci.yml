@@ -1,8 +1,23 @@
 
 stages:
   - install
+  - build
+
+variables:
+  IMAGE_NAME: "$DOCKER_USERNAME/gitlab-nodejs"
 
 install_job:
   stage: install
   image: node:22-alpine
-  script: npm install
+  script: 
+    - npm install
+
+build_job:
+  stage: build
+  image: docker:24
+  services:
+    - docker:24-dind
+  script:
+    - docker build -t $IMAGE_NAME
+    - docker images
+    
