@@ -39,5 +39,6 @@ build_push_job:
     - docker login registry.gitlab.com -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
     - docker push $IMAGE_NAME
     - docker images
-   
+
+
     
