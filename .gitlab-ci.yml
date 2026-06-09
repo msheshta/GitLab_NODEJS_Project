@@ -4,7 +4,7 @@ stages:
   - build_push_hub
 
 variables:
-  IMAGE_NAME: "$DOCKER_USERNAME/gitlab-nodejs"
+  IMAGE_NAME: "$DOCKER_USERNAME/gitlab-nodejs:$CI_PIPELINE_IID"
 
 install_job:
   stage: install
@@ -23,4 +23,3 @@ build_push_job:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker push $IMAGE_NAME
     - docker images
-
