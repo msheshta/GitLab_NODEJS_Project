@@ -4,7 +4,7 @@ stages:
   - build_push_hub
 
 variables:
-  IMAGE_NAME: "$DOCKER_USERNAME/gitlab-nodejs:$CI_PIPELINE_IID"
+  IMAGE_NAME: "$DOCKER_USERNAME/gitlab-nodejs:$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_IID"
 
 install_job:
   stage: install
