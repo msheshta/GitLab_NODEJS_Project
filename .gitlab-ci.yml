@@ -18,6 +18,5 @@ build_job:
   services:
     - docker:24-dind
   script:
-    - docker build -t $IMAGE_NAME
+    - docker build -t $IMAGE_NAME .
     - docker images
-    
