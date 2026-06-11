@@ -3,6 +3,7 @@ stages:
   - install
   - build_push_hub
   - build_push_gitlab
+  - deploy
 
 
 variables:
@@ -40,5 +41,13 @@ build_push_job:
     - docker push $IMAGE_NAME
     - docker images
 
-
-    
+deploy_job:
+  stage: deploy
+  image: 
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
+  script:
+    - sed -i "s|IMAGE_PLACEHOLDER|$IMAGE_NAME|g" deployment.yaml
+    - kubectl config use-context "$KUBE_CONTEXT"
+    - kubectl apply -f deployment.yaml
+    - kubectl apply -f service.yaml

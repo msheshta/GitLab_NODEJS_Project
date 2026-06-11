@@ -14,7 +14,7 @@ spec:
         app: nodejs-app
     spec:
       imagePullSecrets:
-        - gitlab-registry-secret
+        - name: gitlab-registry-secret
       containers:
         - name: nodejs-app
           image: IMAGE_PLACEHOLDER
