@@ -1,0 +1,5 @@
+
+ci_access:
+  projects:
+    - id: gitlab-course4130222/gitlab-nodejs
+    
